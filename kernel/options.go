@@ -33,7 +33,7 @@ func (o *Options) String() string {
 		options.WriteString(fmt.Sprintf(" console=%s", c))
 	}
 	if o.ignitionConfigUrl != "" {
-		options.WriteString(fmt.Sprintf(" coreos.config.url=%s", o.ignitionConfigUrl))
+		options.WriteString(fmt.Sprintf(" coreos.first_boot=1 coreos.config.url=%s", o.ignitionConfigUrl))
 	}
 	if o.CoreOSAutologin != "" {
 		options.WriteString(fmt.Sprintf(" coreos.autologin=%s", o.CoreOSAutologin))
