@@ -6,22 +6,22 @@ import (
 )
 
 type Options struct {
-	CloudConfig     string   `json:"cloud_config"`
+	IgnitionConfig     string   `json:"ignition_config"`
 	Console         []string `json:"console"`
 	CoreOSAutologin string   `json:"coreos_autologin"`
 	Root            string   `json:"root"`
 	RootFstype      string   `json:"rootfstype"`
 	SSHKey          string   `json:"sshkey"`
 	Version         string   `json:"version"`
-	cloudConfigUrl  string
+	ignitionConfigUrl  string
 }
 
 func New() *Options {
 	return &Options{}
 }
 
-func (o *Options) SetCloudConfigUrl(url string) {
-	o.cloudConfigUrl = url
+func (o *Options) SetIgnitionConfigUrl(url string) {
+	o.ignitionConfigUrl = url
 }
 
 func (o *Options) String() string {
@@ -32,8 +32,8 @@ func (o *Options) String() string {
 	for _, c := range o.Console {
 		options.WriteString(fmt.Sprintf(" console=%s", c))
 	}
-	if o.cloudConfigUrl != "" {
-		options.WriteString(fmt.Sprintf(" cloud-config-url=%s", o.cloudConfigUrl))
+	if o.ignitionConfigUrl != "" {
+		options.WriteString(fmt.Sprintf(" coreos.config.url=%s", o.ignitionConfigUrl))
 	}
 	if o.CoreOSAutologin != "" {
 		options.WriteString(fmt.Sprintf(" coreos.autologin=%s", o.CoreOSAutologin))

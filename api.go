@@ -10,8 +10,8 @@ import (
 	"path/filepath"
 	"text/template"
 
-	"github.com/kelseyhightower/coreos-ipxe-server/config"
-	"github.com/kelseyhightower/coreos-ipxe-server/kernel"
+	"github.com/SysBind/coreos-ipxe-server/config"
+	"github.com/SysBind/coreos-ipxe-server/kernel"
 )
 
 const ipxeBootScript = `#!ipxe
@@ -45,8 +45,8 @@ func ipxeBootScriptServer(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	if options.CloudConfig != "" {
-		options.SetCloudConfigUrl(fmt.Sprintf("http://%s/configs/%s.yml", baseUrl, options.CloudConfig))
+	if options.IgnitionConfig != "" {
+		options.SetIgnitionConfigUrl(fmt.Sprintf("http://%s/configs/%s.ign", baseUrl, options.IgnitionConfig))
 	}
 	if options.SSHKey != "" {
 		sshKeyPath := filepath.Join(config.DataDir, fmt.Sprintf("sshkeys/%s.pub", options.SSHKey))
